@@ -23,12 +23,14 @@ export default function AdminAgentsPage() {
 
   async function updateStatus(id: string, status: "approved" | "rejected") {
     const supabase = createClient();
-  await supabase
+await supabase
   .from("agents")
-  .update({ status } as never)
+  .update({ status: status } as never)
   .eq("id", id);
     
-   setAgents((prev) => prev.map((a) => (a.id === id ? { ...a, status } : a)));
+   setAgents((prev) => 
+     prev.map((a) => (a.id === id ? { ...a, status } : a))
+     );
   }
 
   return (
