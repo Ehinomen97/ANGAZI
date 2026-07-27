@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Agent } from "@/types/database";
+import type { Database } from "@/types/database";
 
 export default function AdminAgentsPage() {
   const [agents, setAgents] = useState<Agent[]>([]);
@@ -25,7 +26,9 @@ export default function AdminAgentsPage() {
     const supabase = createClient();
 await supabase
   .from("agents")
-  .update({ status: status } as never)
+  .update({
+    status,
+  } satisfies Database["public"]["Tables"]["agents"]["Update"])
   .eq("id", id);
     
    setAgents((prev) => 
