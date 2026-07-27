@@ -28,11 +28,11 @@ export default function AdminLoginPage() {
       return;
     }
 
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("role")
-      .eq("id", data.user.id)
-      .single();
+const { data: profile }: { data: { role: string } | null } = await supabase
+  .from("profiles")
+  .select("role")
+  .eq("id", data.user.id)
+  .single();
 
     setLoading(false);
 
