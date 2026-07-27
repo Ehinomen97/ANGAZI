@@ -26,9 +26,7 @@ export default function AdminAgentsPage() {
     const supabase = createClient();
 await supabase
   .from("agents")
-  .update({
-    status,
-  } satisfies Database["public"]["Tables"]["agents"]["Update"])
+  .update({ status } as any)
   .eq("id", id);
     
    setAgents((prev) => 
